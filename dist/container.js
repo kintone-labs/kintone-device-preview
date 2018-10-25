@@ -1,10 +1,46 @@
 (function() {
 
     function getMobileUrl(location) {
-        const re = /\/k\/(\d+)\/show#record=(\d+)/;
+        // レコード編集画面
+        var re = /\/k\/(\d+)\/show#record=(\d+).*&mode=edit.*/;
         if (re.test(location.href)) {
-            const matches = location.href.match(re);
+            var matches = location.href.match(re);
+            return location.origin + '/k/m/' + matches[1] + '/edit?record=' + matches[2];
+        }
+
+        // レコード詳細画面
+        var re = /\/k\/(\d+)\/show#record=(\d+)/;
+        if (re.test(location.href)) {
+            var matches = location.href.match(re);
             return location.origin + '/k/m/' + matches[1] + '/show?record=' + matches[2];
+        }
+
+        // レコード再利用画面
+        var re = /\/k\/(\d+)\/edit\?record=(\d+)/;
+        if (re.test(location.href)) {
+            var matches = location.href.match(re);
+            return location.origin + '/k/m/' + matches[1] + '/edit?record=' + matches[2] + '&reuse=true';
+        }
+
+        // レコード追加画面
+        var re = /\/k\/(\d+)\/edit/;
+        if (re.test(location.href)) {
+            var matches = location.href.match(re);
+            return location.origin + '/k/m/' + matches[1] + '/edit';
+        }
+
+        // レコード一覧画面
+        var re = /\/k\/(\d+)\/(\?view=\d+)?/;
+        if (re.test(location.href)) {
+            var matches = location.href.match(re);
+            return location.origin + '/k/m/' + matches[1] + '/' + (matches[2] || '');
+        }
+
+        // 検索画面
+        var re = /\/k\/search\?keyword=([^\&]+)(&app=(\d+))?/;
+        if (re.test(location.href)) {
+            var matches = location.href.match(re);
+            return location.origin + '/k/m/search?keyword=' + matches[1] + (matches[2] || '');
         }
 
         return location.origin + '/k/m/'
