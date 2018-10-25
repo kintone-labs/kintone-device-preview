@@ -1,6 +1,12 @@
 (function() {
 
     function getMobileUrl(location) {
+        const re = /\/k\/(\d+)\/show#record=(\d+)/;
+        if (re.test(location.href)) {
+            const matches = location.href.match(re);
+            return location.origin + '/k/m/' + matches[1] + '/show?record=' + matches[2];
+        }
+
         return location.origin + '/k/m/'
     }
 
