@@ -1,6 +1,13 @@
 (function() {
 
     function getMobileUrl(location) {
+        // レコード集計画面
+        var re = /\/k\/(\d+)\/report\?report=(\d+)/;
+        if (re.test(location.href)) {
+            var matches = location.href.match(re);
+            return location.origin + '/k/m/' + matches[1] + '/report?report=' + matches[2];
+        }
+
         // レコード編集画面
         var re = /\/k\/(\d+)\/show#record=(\d+).*&mode=edit.*/;
         if (re.test(location.href)) {
