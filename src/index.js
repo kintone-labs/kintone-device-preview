@@ -9,9 +9,6 @@ import SpaceIndexUrlConverter from './urlconverter/spaceindexurlconverter';
 
 (function() {
 
-    //initialized
-    chrome.runtime.sendMessage({spoofUserAgent: false});
-
     function getMobileUrl(location) {
         const converters = [
             new ReportUrlConverter(),
@@ -38,10 +35,7 @@ import SpaceIndexUrlConverter from './urlconverter/spaceindexurlconverter';
         previewEl.setAttribute('title', 'Open Mobile Preview');
         previewEl.addEventListener('click', function(event) {
             event.preventDefault();
-            chrome.runtime.sendMessage({spoofUserAgent: true}, function() {
-                const previewWindow = window.open(getMobileUrl(location), '_blank',
-                    'width=375,height=667,top=10,left=10');
-                chrome.runtime.sendMessage({spoofUserAgent: false});
+            chrome.runtime.sendMessage({url: location.href}, function() {
             });
         });
         return previewEl;
