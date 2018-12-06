@@ -39,9 +39,6 @@ import SearchUrlConverter from './urlconverter/searchurlconverter';
         return previewEl;
     }
 
-    window.addEventListener('load', function() {
-        const linksEl = document.querySelector('.gaia-header-toolbar-links');
-        linksEl.appendChild(createPreviewLink());
-    });
-
+    const linksEl = document.querySelector('.gaia-header-toolbar-links');
+    linksEl.appendChild(createPreviewLink());
 })();
