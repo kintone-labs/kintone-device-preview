@@ -5,10 +5,14 @@ import RecordEditUrlConverter from './urlconverter/recordediturlconverter';
 import RecordIndexUrlConverter from './urlconverter/recordindexurlconverter';
 import RecordReuseUrlConverter from './urlconverter/recordreuseurlconverter';
 import SearchUrlConverter from './urlconverter/searchurlconverter';
+import SpaceIndexUrlConverter from './urlconverter/spaceindexurlconverter';
 
 (function() {
 
-     function getMobileUrl(location) {
+    //initialized
+    chrome.runtime.sendMessage({spoofUserAgent: false});
+
+    function getMobileUrl(location) {
         const converters = [
             new ReportUrlConverter(),
             new RecordEditUrlConverter(),
@@ -16,7 +20,8 @@ import SearchUrlConverter from './urlconverter/searchurlconverter';
             new RecordAddUrlConverter(),
             new RecordDetailUrlConverter(),
             new RecordIndexUrlConverter(),
-            new SearchUrlConverter()
+            new SearchUrlConverter(),
+            new SpaceIndexUrlConverter()
         ];
         const converter = converters.find(converter => converter.canSupportUrl(location.href));
         if (converter) {
@@ -33,8 +38,11 @@ import SearchUrlConverter from './urlconverter/searchurlconverter';
         previewEl.setAttribute('title', 'Open Mobile Preview');
         previewEl.addEventListener('click', function(event) {
             event.preventDefault();
-            window.open(getMobileUrl(location), '_blank',
-            'width=375,height=667,top=10,left=10');
+            chrome.runtime.sendMessage({spoofUserAgent: true}, function() {
+                const previewWindow = window.open(getMobileUrl(location), '_blank',
+                    'width=375,height=667,top=10,left=10');
+                chrome.runtime.sendMessage({spoofUserAgent: false});
+            });
         });
         return previewEl;
     }
