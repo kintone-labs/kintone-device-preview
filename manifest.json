@@ -3,8 +3,8 @@
   "description": "Show kintone device preview",
   "version": "1.02",
   "content_scripts": [{
-    "css": ["dist/style.css"],
-    "js": ["dist/container.js"],
+    "css": ["src/style.css"],
+    "js": ["dist/bundle.js"],
     "matches": [
       "https://*.cybozu.com/k/*", 
       "https://*.cybozu-dev.com/k/*", 
