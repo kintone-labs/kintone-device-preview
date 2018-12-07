@@ -1,7 +1,7 @@
 {
   "name": "Kintone Device Preview",
   "description": "Show kintone device preview",
-  "version": "1.03",
+  "version": "1.04",
   "content_scripts": [{
     "css": ["src/style.css"],
     "js": ["dist/bundle.js"],

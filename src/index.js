@@ -3,7 +3,7 @@
     function createPreviewLink() {
         const previewEl = document.createElement('a');
         previewEl.className = 'device-preview';
-        previewEl.setAttribute('href', '#');
+        previewEl.setAttribute('href', window.location.origin + '/k/m/');
         previewEl.setAttribute('aria-label', 'Open Mobile Preview');
         previewEl.setAttribute('title', 'Open Mobile Preview');
         previewEl.addEventListener('click', function(event) {
