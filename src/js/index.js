@@ -8,12 +8,11 @@
         previewEl.setAttribute('title', 'Open Mobile Preview');
         previewEl.addEventListener('click', function(event) {
             event.preventDefault();
-            chrome.runtime.sendMessage({url: location.href}, function() {
-            });
+            chrome.runtime.sendMessage({url: location.href});
         });
         return previewEl;
     }
 
     const linksEl = document.querySelector('.gaia-header-toolbar-links');
-    linksEl.appendChild(createPreviewLink());
+    linksEl && linksEl.appendChild(createPreviewLink());
 })();
