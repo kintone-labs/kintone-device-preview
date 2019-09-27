@@ -15,7 +15,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "webpack && zip -r extension.zip dist/",
+    "build": "webpack --mode production && zip -r extension.zip dist/",
     "dev": "webpack"
   },
   "repository": {
