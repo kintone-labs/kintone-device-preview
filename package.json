@@ -1,5 +1,5 @@
 {
-  "name": "kintone_mobile_preview",
+  "name": "kintone-device-preview",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -15,12 +15,13 @@
   },
   "devDependencies": {},
   "scripts": {
-      "build": "webpack"
+    "build": "webpack && zip -r extension.zip dist/",
+    "dev": "webpack"
   },
   "repository": {
     "type": "git",
     "url": "https://github.dev.cybozu.co.jp/koba/kintone_mobile_preview.git"
   },
-  "author": "koba",
+  "author": "sukoyakarizumu",
   "license": "ISC"
 }
